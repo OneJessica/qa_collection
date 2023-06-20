@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <div class="navbar">
+    <nav>
+      <ul>
+          <li><a href="/">主页Home</a></li>
+        <li><a href="/categories">分类Catergories</a></li>
+          {% if current_user.is_authenticated %}
+    <li><a href="{{ url_for('create_post') }}">发文Post</a></li>
+          <li><a href="{{ url_for('get_user') }}">我的Me</a></li>
+
+    {% else %}
+    <li><a href="{{ url_for('login') }}">登陆</a></li>
+    <li><a href="{{ url_for('register') }}">注册</a></li>
+    {% endif %}
+
+      </ul>
+    </nav>
+    </div>
+    <title>发文</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+
+<div class="center-content">
+    <h3>发文</h3>
+    <form action="{{ url_for('create_post') }}" method="post">
+        <h1>标题</h1>
+        <input class = 'container'type="text" name="title" placeholder="Title" required>
+        <br>
+        <h1>类别</h1>
+        <input class = 'container'type="text" name="categories" placeholder="categories" required>
+        <h1>内容</h1>
+        <textarea id="myTextarea" rows="6" cols="50" name="content" placeholder="Content" required></textarea>
+        <br>
+        <button type="submit">发表</button>
+    </form>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+</div>
+</body>
+</html>
