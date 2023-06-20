@@ -1,16 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>分析对应关系</title>
-</head>
-<body>
-<h1>分析对应关系</h1>
-<h2>一、解释说明关系</h2>
-<p>解释说明关系是指上下文之间互相补充说明或者限制其使用范围的模式。该模式常包括指代、同义互换、归纳概括、限制因果条件、举例论证和标点。</p>
-<p>1.指代</p>
-<p>指代是指使用含有指代意的词语，如这、那、此、这些、这样。</p>
-<p>2.同义互换</p>
-<p>指代是指使用含有同义互换的词语，如也就是说、或者说、即、无异于</p>
-</body>
+<html>
+
+<header>
+    <title>Forum</title>
+
+    <div class="logo">
+      <a href="/">
+        <img src="images/1.png" alt="Logo">
+      </a>
+    </div>
+    <div class="navbar">
+    <nav>
+      <ul>
+          <li><a href="/">Home</a></li>
+        <li><a href="/categories">Categories</a></li>
+          {% if current_user.is_authenticated %}
+    <li><a href="{{ url_for('create_post') }}">Create Post</a></li>
+          <li><a href="{{ url_for('get_user') }}">Me</a></li>
+    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+    {% else %}
+    <li><a href="{{ url_for('login') }}">Login</a></li>
+    <li><a href="{{ url_for('register') }}">Register</a></li>
+    {% endif %}
+
+      </ul>
+    </nav>
+    </div>
+    <div class="search">
+      <input type="text" placeholder="Search">
+      <button type="submit">Search</button>
+    </div>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  </header>
 </html>

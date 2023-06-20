@@ -1,0 +1,224 @@
+/* style.css */
+
+.post {
+      width: 100%;
+      /*padding: 20px;*/
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      margin-bottom: 20px;
+      padding: 0 33.33%;
+      /*margin: 20px;*/
+      /*justify-content: center;*/
+
+    }
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: xx-large;
+  background-color: #f8f8f8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0 33.33%;
+  height: 100%;
+
+}
+
+header, main, footer {
+
+  margin: 20px;
+  height: 100%;
+}
+
+header {
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+}
+
+nav li {
+  margin: 0 10px;
+}
+
+main {
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+}
+.avatar {
+      width: 100px; /* 设置宽度 */
+      height: 100px; /* 设置高度 */
+      border-radius: 50%; /* 圆角边框，使图片显示为圆形 */
+    }
+.navbar {
+  background: linear-gradient(to right, #FFD700, #FFA500);
+  color: #FFFFFF;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar ul {
+  list-style: none inside;
+  display: flex;
+  margin: 100px;
+  padding: 0;
+}
+
+.navbar li {
+  margin: 0 10px;
+}
+
+.navbar a {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  color: #FF4500;
+}
+
+
+
+.container {
+  max-width: 360px;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  width: auto;
+}
+
+
+
+.logo img {
+  width: 100px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-size: 16px;
+  color: #333333;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
+
+.form-button {
+  padding: 10px 20px;
+  background-color: #333333;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+}
+
+.form-button:hover {
+  background-color: #555555;
+}
+
+.error-message {
+  color: #ff0000;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+.button:hover {
+  background-color: #ff0;
+  color: #333;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination a {
+  padding: 5px 10px;
+  margin: 0 5px;
+  border: 1px solid #ccc;
+  text-decoration: none;
+  color: #333;
+}
+
+.pagination a.active {
+  background-color: #333;
+  color: #fff;
+}
+/* 标题样式 */
+h1 {
+  font-size: 24px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+/* 帖子样式 */
+
+.post h2 {
+  margin-top: 0;
+}
+
+.post p {
+  font-size: 20px;
+  margin-bottom: 0;
+}
+
+.search button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.search button:hover {
+  background-color: #0056b3;
+}
+
+#myTextarea {
+  width: 800px;
+  height: 100px;
+
+
+}
+
+

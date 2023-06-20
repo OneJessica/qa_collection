@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{g.category}}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <div class="navbar">
+    <nav>
+      <ul>
+          <li><a href="/">主页Home</a></li>
+        <li><a href="/categories">分类Catergories</a></li>
+          {% if current_user.is_authenticated %}
+    <li><a href="{{ url_for('create_post') }}">发文Post</a></li>
+          <li><a href="{{ url_for('get_user') }}">我的Me</a></li>
+
+    {% else %}
+    <li><a href="{{ url_for('login') }}">登陆</a></li>
+    <li><a href="{{ url_for('register') }}">注册</a></li>
+    {% endif %}
+
+      </ul>
+    </nav>
+    </div>
+</head>
+<body>
+<div class = 'center-content'>
+<li>
+    <h1>分类</h1>
+    <h3>{{g.category}}</h3>
+
+    {% for post in category_detail %}
+    {% if post %}
+        <li><a href="{{ url_for('post_detail', post_id=post.id) }}"><big>{{ post.title }}  </big></a>
+            <small>-by {{post.author.username}}</small></a>
+
+        </li>
+    {% endif %}
+        {% endfor %}
+
+</li>
+    </div>
+</body>
+</html>

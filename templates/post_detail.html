@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <div class="navbar">
+    <nav>
+      <ul>
+          <li><a href="/">主页Home</a></li>
+        <li><a href="/categories">分类Catergories</a></li>
+          {% if current_user.is_authenticated %}
+    <li><a href="{{ url_for('create_post') }}">发文Post</a></li>
+          <li><a href="{{ url_for('get_user') }}">我的Me</a></li>
+
+    {% else %}
+    <li><a href="{{ url_for('login') }}">登陆</a></li>
+    <li><a href="{{ url_for('register') }}">注册</a></li>
+    {% endif %}
+
+      </ul>
+    </nav>
+    </div>
+
+    <title>文章详情</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+<div class="post">
+    <h1><big>{{ post.title }}</big></h1>
+    <p><small>by {{ post.author.username }}    created on {{ post.create_on.strftime('%Y-%m-%d %H:%M:%S')}}</small></p>
+    <br>
+    <p class="align-baseline"><big>{{ post.content| safe  }}</big></p>
+    <hr>
+    <hr>
+    <h1><strong>评论区</strong></h1>
+    <ul>
+        {% for comment in post.comments %}
+        <li><tt>{{ comment.content| safe  }} <small>- by {{ comment.author.username }} on {{ comment.create_on.strftime('%Y-%m-%d %H:%M:%S')}}</small></tt>
+            {% if comment.author == current_user %}
+            <form action="{{ url_for('delete_comment', comment_id=comment.id) }}" method="post" style="display:inline;">
+                <button type="submit" onclick="return confirm('Are you sure you want to delete this comment?')">删除</button>
+            </form>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% if current_user.is_authenticated %}
+    <form action="{{ url_for('create_comment', post_id=post.id) }}" method="post">
+        <textarea id="myTextarea" rows="6" cols="50" name="content" placeholder="我认为……" required></textarea>
+        <br>
+        <button type="submit">评论</button>
+    </form>
+    {% else %}
+    <p>Please <a href="{{ url_for('login') }}">login</a> to add comments.</p>
+    {% endif %}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+</div>
+</body>
+</html>

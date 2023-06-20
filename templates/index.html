@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<header>
+    <title>Forum</title>
+
+    <div class="logo">
+      <a href="/">
+<!--        <img src="../static/1.png" alt="Logo">-->
+<!--          <img src="{{ url_for('static', filename='1.png') }}">-->
+      </a>
+    </div>
+    <div class="navbar">
+    <nav>
+      <ul>
+          <li><a href="/">主页Home</a></li>
+        <li><a href="/categories">分类Catergories</a></li>
+          {% if current_user.is_authenticated %}
+    <li><a href="{{ url_for('create_post') }}">发文Post</a></li>
+          <li><a href="{{ url_for('get_user') }}">我的Me</a></li>
+
+    {% else %}
+    <li><a href="{{ url_for('login') }}">登陆</a></li>
+    <li><a href="{{ url_for('register') }}">注册</a></li>
+    {% endif %}
+
+      </ul>
+    </nav>
+    </div>
+    <form method="POST">
+    <div class="search">
+      <input type="text" name="keyword" placeholder="Search">
+      <button type="submit" name="button_name" value="search">Search</button>
+
+    </div>
+    </form>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  </header>
+<body>
+<div class="center-content">
+    <h1>Forum</h1>
+    <h2>Posts</h2>
+    <ul>
+        {% for post in posts %}
+        <li><a href="{{ url_for('post_detail', post_id=post.id) }}"><big>{{ post.title }}  </big></a>
+            <small>-by {{post.author.username}}</small></a>
+
+        </li>
+        {% endfor %}
+        <hr>
+    </ul>
+      <form method="POST" action="/process_pagination">
+      <div class="pagination">
+      {% if pagination.has_prev %}
+        <a href="{{ url_for('index', page=pagination.prev_num) }}">上一页</a>
+      {% else %}
+        <span>上一页</span>
+      {% endif %}
+        {% for page in pagination.iter_pages %}
+        {% if page %}
+          {% if page != pagination.page %}
+            <a href="{{ url_for('index', page=page) }}">{{ page }}</a>
+          {% else %}
+            <a href="{{ url_for('index', page=page) }}" class="active">{{ page }}</a>
+          {% endif %}
+        {% else %}
+          <span class="ellipsis">...</span>
+        {% endif %}
+      {% endfor %}
+      {% if pagination.has_next %}
+        <a href="{{ url_for('index', page=pagination.next_num) }}">下一页</a>
+      {% else %}
+        <span>下一页</span>
+      {% endif %}
+           </div>
+
+
+    <span>每页显示：</span>
+    <select name="page_size">
+      <option value="5">5</option>
+      <option value="10" selected>10</option>
+      <option value="20">20</option>
+      <option value="50">50</option>
+    </select>
+
+  <button type="submit">提交</button>
+</form>
+    </div>
+
+
+<!--    <h2>Actions</h2>-->
+<!--    {% if current_user.is_authenticated %}-->
+<!--    <a href="{{ url_for('create_post') }}">Create Post</a>-->
+<!--    <a href="{{ url_for('logout') }}">Logout</a>-->
+<!--    {% else %}-->
+<!--    <a href="{{ url_for('login') }}">Login</a>-->
+<!--    <a href="{{ url_for('register') }}">Register</a>-->
+<!--    {% endif %}-->
+<!--    {% with messages = get_flashed_messages() %}-->
+<!--    {% if messages %}-->
+<!--    <ul>-->
+<!--        {% for message in messages %}-->
+<!--        <li>{{ message }}</li>-->
+<!--        {% endfor %}-->
+<!--    </ul>-->
+<!--    {% endif %}-->
+<!--    {% endwith %}-->
+</div>
+</body>
+</html>

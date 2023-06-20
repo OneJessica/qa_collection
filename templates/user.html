@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>个人中心</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<!--# 导航栏-->
+  <div class="navbar">
+    <nav>
+      <ul>
+          <li><a href="/">主页Home</a></li>
+        <li><a href="/categories">分类Catergories</a></li>
+          {% if current_user.is_authenticated %}
+    <li><a href="{{ url_for('create_post') }}">发文Post</a></li>
+          <li><a href="{{ url_for('get_user') }}">我的Me</a></li>
+
+    {% else %}
+    <li><a href="{{ url_for('login') }}">登陆</a></li>
+    <li><a href="{{ url_for('register') }}">注册</a></li>
+    {% endif %}
+
+      </ul>
+    </nav>
+    </div>
+
+  <div >
+    <h1>个人中心</h1>
+
+    <div class="profile">
+
+      <img class = "avatar" src="{{ url_for('static', filename='1.png') }}"alt="用户头像">
+      <h2>{{g.username}}</h2>
+
+
+
+    <section class="center-content">
+      <h3>发表的帖子</h3>
+      <!-- 帖子列表 -->
+      {% if user_posts%}
+
+      {% for post in user_posts %}
+      <li><a href="{{ url_for('post_detail', post_id=post.id) }}">{{ post.title }}  </a>
+        <a href="{{ url_for('edit_post',post_id = post.id) }}"><small>编辑</small></a>
+        <a href="{{ url_for('delete_post',post_id = post.id) }}"><small>删除</small></a>
+
+      {% endfor %}
+        {% endif %}
+
+    </li>
+    </section>
+
+
+    <section class="comments">
+      <h3>评论</h3>
+      <!-- 评论列表 -->
+    </section>
+
+    <section class="guestbook">
+      <h3>留言板</h3>
+      <!-- 留言板内容 -->
+    </section>
+    <section>
+    <li><a href="{{ url_for('logout') }}">退出</a></li>
+    </section>
+  </div>
+
+  <footer>
+    <!-- 页脚内容 -->
+  </footer>
+
+</body>
+</html>

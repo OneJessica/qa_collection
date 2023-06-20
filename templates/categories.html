@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Directory</title>
+<!--  <link rel="stylesheet" href="style.css">-->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <div class="navbar">
+    <nav>
+      <ul>
+          <li><a href="/">主页Home</a></li>
+        <li><a href="/categories">分类Catergories</a></li>
+          {% if current_user.is_authenticated %}
+    <li><a href="{{ url_for('create_post') }}">发文Post</a></li>
+          <li><a href="{{ url_for('get_user') }}">我的Me</a></li>
+
+    {% else %}
+    <li><a href="{{ url_for('login') }}">登陆</a></li>
+    <li><a href="{{ url_for('register') }}">注册</a></li>
+    {% endif %}
+
+      </ul>
+    </nav>
+    </div>
+</head>
+<body>
+  <header>
+    <h1>Directory</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <br>
+    <br>
+    <div class="text-center">
+    <h2>Categories</h2>
+    <ul>
+<!--      <p href="#">{{ categories_details }}</p>-->
+      {%for cate in categories%}
+      {% if cate %}
+      <li><a href="{{url_for('get_categories_detail',categories=cate)}}">{{ cate }}</a></li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+    </div>
+  </main>
+
+  <footer>
+    <br>
+    <p>&copy; 2023 My Directory. All rights reserved.</p>
+  </footer>
+</body>
+</html>
