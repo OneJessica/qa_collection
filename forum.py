@@ -5,7 +5,6 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine,DateTime
 from datetime import datetime
 from flask_paginate import Pagination, get_page_args
-import markdown
 from markdown import Markdown
 
 
